@@ -23,5 +23,6 @@ Route::get('/signout', [AuthController::class, 'signOut'])->name('signout');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/', [ArticleController::class, 'index'])->name('articles.index');
-    Route::get('/dashboard', [AuthController::class, 'dashboard']);
+    Route::get('/articles/create', [ArticleController::class, 'create'])->name('articles.create');
+    Route::post('/articles', [ArticleController::class, 'store'])->name('articles.store');
 });
