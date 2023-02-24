@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Sport;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,17 +19,7 @@ class ArticleFactory extends Factory
     {
         return [
             'body' => fake()->text(),
-            'sport' => fake()->randomElement(['TRAIL', 'TREKKING', 'BIKING', 'RUNNING']),
+            'sport_id' => Sport::inRandomOrder()->first()->id,
         ];
-    }
-
-    public function users()
-    {
-        return $this->belongsToMany(User::class, 'article_user');
-    }
-
-    public function sport()
-    {
-        return $this->belongsTo(Sport::class);
     }
 }

@@ -16,7 +16,7 @@ class Sport extends Model
 
     public function users()
     {
-        return $this->belongsToMany(User::class, 'members_sports');
+        return $this->belongsToMany(User::class, 'member_sports');
     }
 
     public function articles()

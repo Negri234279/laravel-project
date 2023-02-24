@@ -17,17 +17,17 @@ class DatabaseSeeder extends Seeder
     {
         $this->truncateTables([
             'articles',
-            'members_sports',
+            'member_sports',
             'sports',
             'users',
         ]);
 
-        /*$this->call([            
+        $this->call([            
             UsersTableSeeder::class,
             SportSeeder::class,
-            MemberSportSeeder::class,
+            MemberSportsSeeder::class,
             ArticleSeeder::class,
-        ]);*/
+        ]);
     }
 
     /**
@@ -38,8 +38,12 @@ class DatabaseSeeder extends Seeder
      */
     protected function truncateTables(array $tables)
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+
         foreach ($tables as $table) {
             DB::table($table)->truncate();
         }
+
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }
 }

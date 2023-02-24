@@ -17,18 +17,6 @@ class ArticleSeeder extends Seeder
      */
     public function run()
     {
-        $sports = Sport::all();
-
-        User::all()->each(function ($user) use ($sports) {
-            $user->sports->each(function ($sport) use ($user) {
-                Article::factory()->count(rand(1, 5))->create([
-                    'sport_id' => $sport->id
-                ])->each(function ($article) use ($user) {
-                    $article->users()->attach($user);
-                }
-                    );
-            }
-            );
-        });
+        Article::factory()->count(50)->create();
     }
 }

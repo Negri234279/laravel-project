@@ -45,7 +45,7 @@ class User extends Authenticatable
 
     public function sports()
     {
-        return $this->belongsToMany(Sport::class, 'members_sports');
+        return $this->belongsToMany(Sport::class, 'member_sports');
     }
 
     public function articles()
