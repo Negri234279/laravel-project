@@ -16,14 +16,18 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->truncateTables([
+            'articles',
+            'members_sports',
             'sports',
-            'users'
+            'users',
         ]);
 
-        $this->call([
-            SportSeeder::class,
+        /*$this->call([            
             UsersTableSeeder::class,
-        ]);
+            SportSeeder::class,
+            MemberSportSeeder::class,
+            ArticleSeeder::class,
+        ]);*/
     }
 
     /**

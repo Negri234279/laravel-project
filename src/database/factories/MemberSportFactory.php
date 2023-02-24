@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Sport>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\MemberSport>
  */
-class SportFactory extends Factory
+class MemberSportFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,8 +17,7 @@ class SportFactory extends Factory
     public function definition()
     {
         return [
-            'name' => fake()->word(),
-            'description' => fake()->sentence(),
+            //
         ];
     }
 }

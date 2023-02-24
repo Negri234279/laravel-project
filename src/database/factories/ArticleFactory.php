@@ -21,4 +21,14 @@ class ArticleFactory extends Factory
             'sport' => fake()->randomElement(['TRAIL', 'TREKKING', 'BIKING', 'RUNNING']),
         ];
     }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'article_user');
+    }
+
+    public function sport()
+    {
+        return $this->belongsTo(Sport::class);
+    }
 }

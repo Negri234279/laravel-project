@@ -8,4 +8,19 @@ use Illuminate\Database\Eloquent\Model;
 class Sport extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'name',
+        'description',
+    ];
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'members_sports');
+    }
+
+    public function articles()
+    {
+        return $this->hasMany(Article::class);
+    }
 }
