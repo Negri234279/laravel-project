@@ -23,6 +23,11 @@ Route::get('/signout', [AuthController::class, 'signOut'])->name('signout');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/', [ArticleController::class, 'index'])->name('articles.index');
-    Route::get('/articles/create', [ArticleController::class, 'create'])->name('articles.create');
-    Route::post('/articles', [ArticleController::class, 'store'])->name('articles.store');
+});
+
+Route::middleware(['admin'])->prefix('articles')->group(function () {
+    Route::get('/create', [ArticleController::class, 'create'])->name('articles.create');
+    Route::post('/', [ArticleController::class, 'store'])->name('articles.store');
+    Route::get('/{id}/edit', [ArticleController::class, 'edit'])->name('articles.edit');
+    Route::put('/{id}', [ArticleController::class, 'update'])->name('articles.update');
 });
