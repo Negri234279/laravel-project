@@ -25,7 +25,9 @@
 <body class="dark:bg-gray-900 text-white">
     <x-header />    
 
-    {{ $slot }}
+    <div class="container mx-auto">
+        {{ $slot }}
+    </div>
 </body>
 
 </html>

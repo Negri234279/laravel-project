@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
@@ -21,6 +22,6 @@ Route::post('/custom-registration', [AuthController::class, 'customRegistration'
 Route::get('/signout', [AuthController::class, 'signOut'])->name('signout');
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/', fn() => view('dashboard'));
+    Route::get('/', [ArticleController::class, 'index'])->name('articles.index');
     Route::get('/dashboard', [AuthController::class, 'dashboard']);
 });
