@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserSportController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,4 +32,10 @@ Route::middleware(['admin'])->prefix('articles')->group(function () {
     Route::get('/{id}/edit', [ArticleController::class, 'edit'])->name('articles.edit');
     Route::put('/{id}', [ArticleController::class, 'update'])->name('articles.update');
     Route::delete('/{id}', [ArticleController::class, 'destroy'])->name('articles.destroy');
+});
+
+Route::middleware(['auth'])->prefix('user-sports')->group(function () {
+    Route::get('/', [UserSportController::class, 'index'])->name('user-sports.index');
+    Route::post('/subscribe/{id}', [UserSportController::class, 'store'])->name('user-sports.store');
+    Route::delete('/unsubscribe/{id}', [UserSportController::class, 'destroy'])->name('user-sports.destroy');// 
 });

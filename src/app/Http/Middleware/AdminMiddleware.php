@@ -21,7 +21,7 @@ class AdminMiddleware
         }
 
         if (auth()->user()->rol !== 'admin') {
-            abort(403, 'Unauthorized');
+            return redirect()->route('articles.index');
         }
 
         return $next($request);

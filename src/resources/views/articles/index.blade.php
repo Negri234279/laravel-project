@@ -1,7 +1,7 @@
 <x-layout>
     <h1 class="font-bold text-center">Articles</h1>
 
-    <x-articles-filters :mode="$mode" />
+    <x-articles-filters :mode="$mode" :user="$user" />
 
     @if (session('success'))
         <div class="flex p-4 mb-4 text-sm text-green-800 border border-green-300 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400 dark:border-green-800"
@@ -23,7 +23,11 @@
         <div class="alert alert-error mb-4">{{ session('errors') }}</div>
     @endif
 
-    <x-articles :articles="$articles" :user="$user" />
+    @if ($articles->total())
+        <x-articles :articles="$articles" :user="$user" />
+    @else
+        <p class="text-center">No articles</p>
+    @endif
 
     {{ $articles->appends(['mode' => $mode])->links('pagination::tailwind') }}
 </x-layout>

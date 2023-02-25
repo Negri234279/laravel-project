@@ -15,11 +15,11 @@ class ArticleController extends Controller
         $user = Auth::user();
 
         $perPage = $request->query('per_page', 6);
-        $mode = $request->query('mode', 'user');
+        $mode = $request->query('mode', 'sub');
 
         $articles = null;
 
-        if ($mode === 'user') {
+        if ($mode === 'sub') {
             $userId = $user->id;
 
             $articles = Article::with('sport')
@@ -27,7 +27,7 @@ class ArticleController extends Controller
                     $query->where('user_id', $userId);
                 })
                 ->paginate($perPage);
-        } else if ($mode === 'all') {
+        } else {
             $articles = Article::paginate($perPage);
         }
 

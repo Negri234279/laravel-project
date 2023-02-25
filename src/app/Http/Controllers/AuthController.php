@@ -22,10 +22,9 @@ class AuthController extends Controller
             'password' => 'required',
         ]);
 
-        $credentials = $request->only('email', 'password');        
+        $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
-            return redirect()->intended('dashboard')
-                ->withSuccess('Signed in');
+            return redirect()->route('articles.index')->withSuccess('Signed in');
         }
 
         return redirect("login")->withSuccess('Login details are not valid');
@@ -47,7 +46,7 @@ class AuthController extends Controller
         $data = $request->all();
         $check = $this->create($data);
 
-        return redirect("dashboard")->withSuccess('You have signed-in');
+        return redirect()->route('articles.index')->withSuccess('You have signed-in');
     }
 
     public function create(array $data)
@@ -57,11 +56,6 @@ class AuthController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password'])
         ]);
-    }
-
-    public function dashboard()
-    {
-        return view('dashboard');
     }
 
     public function signOut()
