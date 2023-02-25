@@ -19,6 +19,10 @@
         </div>
     @endif
 
+    @if (session('errors'))
+        <div class="alert alert-error mb-4">{{ session('errors') }}</div>
+    @endif
+
     <x-articles :articles="$articles" :user="$user" />
 
     {{ $articles->appends(['mode' => $mode])->links('pagination::tailwind') }}

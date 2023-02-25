@@ -30,12 +30,17 @@
                     @if ($user->isAdmin())
                         <th class="px-6 py-4 whitespace-nowrap">
                             <div class="flex gap-4">
-                                <a href="{{ route('articles.edit', $article) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
-                                Edit
-                            </a>
-                            <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
-                                Delete
-                            </a>
+                                <a href="{{ route('articles.edit', $article) }}"
+                                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                                    Edit
+                                </a>
+                                <form action="{{ route('articles.destroy', $article->id) }}" method="POST"
+                                    class="inline-block">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="text-red-600 hover:text-red-900"
+                                        onclick="return confirm('Are you sure you want to delete this article?')">Delete</button>
+                                </form>
                             </div>
                         </th>
                     @endif

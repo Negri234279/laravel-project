@@ -30,4 +30,5 @@ Route::middleware(['admin'])->prefix('articles')->group(function () {
     Route::post('/', [ArticleController::class, 'store'])->name('articles.store');
     Route::get('/{id}/edit', [ArticleController::class, 'edit'])->name('articles.edit');
     Route::put('/{id}', [ArticleController::class, 'update'])->name('articles.update');
+    Route::delete('/{id}', [ArticleController::class, 'destroy'])->name('articles.destroy');
 });

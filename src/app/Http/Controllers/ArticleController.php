@@ -70,23 +70,33 @@ class ArticleController extends Controller
 
     public function update(Request $request, $id)
     {
-        // Check if user is an admin
-        /*if (!Auth::user()->isAdmin()) {
-            return redirect()->back()->with('error', 'Unauthorized access');
-        }*/
-
         $validatedData = $request->validate([
             'body' => 'required',
             'sport_id' => 'required|exists:sports,id',
         ]);
 
         $article = Article::find($id);
-        
+
         $article->body = $validatedData['body'];
         $article->sport_id = $validatedData['sport_id'];
         $article->save();
-        
+
         return redirect()->route('articles.index')->with('success', 'Article updated successfully');
     }
+
+    public function destroy($id)
+    {
+        $article = Article::find($id);
+
+        if (!$article) {
+            return redirect()->route('articles.index')->withErrors('Article not found.');
+        }
+
+        $article->delete();
+
+        return redirect()->route('articles.index')->withSuccess('Article deleted successfully.');
+    }
+
+
 
 }
