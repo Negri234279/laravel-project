@@ -1,4 +1,6 @@
 <x-layout>
+    <h1 class="text-3xl text-center font-extrabold dark:text-white mb-3">Edit Article</h1>
+
     <form method="POST" action="{{ route('articles.update', $article) }}" class="max-w-xl mx-auto flex flex-col gap-8">
         @csrf
         @method('put')

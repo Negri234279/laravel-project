@@ -1,5 +1,5 @@
 <x-layout>
-    <h1 class="font-bold text-center">Articles</h1>
+    <h1 class="text-3xl text-center font-extrabold dark:text-white mb-3">Articles</h1>
 
     <x-articles-filters :mode="$mode" :user="$user" />
 

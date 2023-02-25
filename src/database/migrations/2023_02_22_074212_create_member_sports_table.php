@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('member_sports', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained();
-            $table->foreignId('sport_id')->constrained();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('sport_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }
