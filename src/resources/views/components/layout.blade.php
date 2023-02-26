@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Laravel</title>
-    @vite(['resources/css/app.css','resources/js/app.js'])
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.11.1/dist/cdn.min.js"></script>
     <script>
         if (
@@ -16,14 +16,12 @@
             document.documentElement.classList.add('dark')
         } else {
             document.documentElement.classList.remove('dark')
-        }       
+        }
     </script>
 </head>
 
 <body class="dark:bg-gray-900 text-white">
-    <x-header />  
-    
-    <x-session-alert />
+    <x-header />
 
     <div class="container mx-auto">
         {{ $slot }}

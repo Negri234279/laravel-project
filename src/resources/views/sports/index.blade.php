@@ -8,6 +8,8 @@
         </a>
     </div>
 
+    <x-session-alert />
+
     <div class="flex flex-wrap justify-center gap-5">
         @foreach ($sports as $sport)
             <div

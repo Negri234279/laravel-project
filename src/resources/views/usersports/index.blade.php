@@ -1,6 +1,8 @@
 <x-layout>
     <h1 class="text-3xl text-center font-extrabold dark:text-white mb-5">Subscriptions</h1>
 
+    <x-session-alert />
+
     <div class="flex flex-wrap justify-center gap-5">
         @foreach ($userSports as $sport)
             <form action="{{ route('user-sports.destroy', ['id' => $sport->id]) }}" method="POST">
