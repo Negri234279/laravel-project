@@ -9,9 +9,30 @@ class SportController extends Controller
 {
     public function index()
     {
-        $sports = Sport::all();
+        $sports = Sport::orderBy('name')->get();
 
         return view('sports.index', compact('sports'));
+    }
+
+    public function create()
+    {
+        return view('sports.create');
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|unique:sports',
+            'description' => 'required',
+        ]);
+
+        $sport = new Sport([
+            'name' => $request->get('name'),
+            'description' => $request->get('description'),
+        ]);
+        $sport->save();
+
+        return redirect()->route('sports.index')->withSuccess('Sport created successfully');
     }
 
     public function edit($id)
@@ -24,7 +45,7 @@ class SportController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name' => 'required',
+            'name' => 'required|unique:sports,name,' . $id,
             'description' => 'required',
         ]);
 
