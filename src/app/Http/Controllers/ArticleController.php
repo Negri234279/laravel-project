@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\ArticleSort;
 use App\Models\Article;
 use App\Models\MemberSport;
 use App\Models\Sport;
@@ -16,25 +17,17 @@ class ArticleController extends Controller
 
         $perPage = $request->query('per_page', 6);
         $mode = $request->query('mode', 'sub');
+        $sort = $request->query('sort', ArticleSort::LASTED);
 
-        $articles = null;
-
-        if ($mode === 'sub') {
-            $userId = $user->id;
-
-            $articles = Article::with('sport')
-                ->whereHas('sport.users', function ($query) use ($userId) {
-                    $query->where('user_id', $userId);
-                })
-                ->paginate($perPage);
-        } else {
-            $articles = Article::paginate($perPage);
-        }
+        $articles = Article::filter($user, $mode)
+            ->sortBy($sort)
+            ->paginate($perPage);
 
         return view('articles.index', [
             'articles' => $articles,
             'user' => $user,
             'mode' => $mode,
+            'sort' => $sort,
         ]);
     }
 
